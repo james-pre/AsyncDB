@@ -22,7 +22,7 @@ db.tx('store', 'readonly').then(tx => {
 	tx.objectStore('store').get('key').async().then(result => {
 		// do something with result;
 	}).catch(error => {
-			console.error(error);
+		console.error(error);
 	});
 });
 ```
