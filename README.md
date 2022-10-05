@@ -18,11 +18,8 @@ db.tx('store', 'readwrite').then(tx => {
 
 Use the `.async()` method of `IDBRequest` to use it as a promise. For example:
 ```js
-db.tx('store', 'readonly').then(tx => {
-	tx.objectStore('store').get('key').async().then(result => {
-		// do something with result;
-	}).catch(error => {
-		console.error(error);
-	});
+db.tx('store', 'readonly').then(async tx => {
+	let result = await tx.objectStore('store').get('key').async();
+	// do something with result;
 });
 ```
