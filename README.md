@@ -6,9 +6,8 @@ An simple asynchronous wrapper for Indexed DB.
 
 You can ensure the database has been opened when calling transactions using the `.tx` method. For example:
 ```js
-let db = new AsyncDB('myDB', 1);
-db.upgrade(idb => {
-	idb.createObjectStore('store');
+let db = new AsyncDB('myDB', 1, db => {
+	db.createObjectStore('store');
 });
 db.tx('store', 'readwrite').then(tx => {
 	//this wil run when the DB is opened but be delayed when closed.
