@@ -5,12 +5,12 @@ IDBRequest.prototype.async = function(){
 	});
 }
 class AsyncDB{
-	constructor(name, version){
+	constructor(name, version, upgrade){
 		this.async = new Promise((resolve, reject) => {
 			let req = indexedDB.open(name, version);
 			req.onsuccess = e => resolve(req.result);
 			req.onerror = e => reject(req.error);
-			req.onupgradeneeded = e => this.upgrade(req.result);
+			req.onupgradeneeded = upgrade;
 		});
 	}
 	async transaction(stores, mode){
@@ -18,7 +18,4 @@ class AsyncDB{
 		return db.transaction(stores, mode);
 	}
 	tx = transaction;
-	upgrade(){
-		
-	}
 }
